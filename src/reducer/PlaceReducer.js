@@ -1,5 +1,5 @@
 import { ADD_PLACE, SELECT_PLACE, UNSELECT_PLACE, DELETE_PLACE } from '../action/types';
-import placeImage from '../../assets/image.jpg'
+
 
 const INIT_STATE = {
     places: [],
@@ -15,7 +15,9 @@ export default (state = INIT_STATE, action) => {
                     return {
                         key: Math.random(),
                         name: action.placeName,
-                        image: placeImage
+                        image: {
+                            uri: 'https://c1.staticflickr.com/5/4096/4744241983_34023bf303_b.jpg'
+                        }
                     }
                 })
             }

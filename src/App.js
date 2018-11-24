@@ -3,8 +3,8 @@ import {Provider} from 'react-redux'
 import {createStore, applyMiddleware } from 'redux'
 import ReduxThunk from 'redux-thunk'
 import reducer from './reducer';
-import PlaceComponent from './components/PlaceComponent';
 
+import PlaceComponent from './components/PlaceComponent';
 
 
 class App extends Component {

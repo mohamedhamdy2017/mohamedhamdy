@@ -3,7 +3,7 @@ import { Button, View } from 'react-native';
 
 import {connect} from 'react-redux'
 
-import { addPlace, selectPlace, unSelectPlace, deletePlace} from '../action'
+import { addPlace, selectPlace, unSelectPlace, deletePlace } from '../action'
 
 import PlacesInput from './PlacesInput'
 import PlaceList from './PlaceList'
@@ -22,7 +22,7 @@ class placeComponent extends Component {
             placeName: val
         })
     }
-    onAddHandler = () => {
+    onAddHandler = placeName => {
         this.props.addPlace(placeName)
         // const { placeName } =this.state;
         //     if(this.state.placeName.trim() === ""){
