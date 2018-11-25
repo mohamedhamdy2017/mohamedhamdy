@@ -10,63 +10,22 @@ import PlaceList from './PlaceList'
 import PlaceDetail from './PlaceDetail'
 
 
-
-
 class placeComponent extends Component {
-    state ={
-        places: [],
-        selectPlace: null
-    }
-    onEditHandler = val => {
-        this.setState({
-            placeName: val
-        })
-    }
+   
     onAddHandler = placeName => {
-        this.props.addPlace(placeName)
-        // const { placeName } =this.state;
-        //     if(this.state.placeName.trim() === ""){
-        //         return alert('Text is empty');
-        //     }
-        //     this.setState(prevState => {
-        //         return{
-        //             places: prevState.places.concat({
-        //                 key: Math.random(),
-        //                 name: placeName,
-        //                 image: placeImage
-        //             })
-        // }
-        // })   
+        this.props.onAddPlace(placeName)  
     }
 
-    onSelectHandler = () => {
-        this.props.selectPlace(key)
-        // this.setState(prevState => {
-        //     return{
-        //     selectPlace: prevState.places.find(place => {
-        //         return place.key === key
-        //     })
-        // } 
-        // })
+    onSelectHandler = key => {
+        this.props.onSelectPlace(key)
     }
 
     onDeleteHandler = () => {
-        this.props.deletePlace()
-        // this.setState(prevState => {
-        //     return{
-        //         places: prevState.places.filter(place => {
-        //             return place.key !== prevState.selectPlace.key
-        //         }),
-        //         selectPlace: null
-        //     }
-        // })
+        this.props.onDeletePlace()
     }
 
     onModalColsedHandler = () => {
-        this.props.unSeletPlace()
-        // this.setState({
-        //     selectPlace: null
-        // })
+        this.props.onUnselectPlace()
     }
 
   render() {
@@ -75,17 +34,17 @@ class placeComponent extends Component {
             <View style={{flexDirection: 'row'}}>
                 <PlacesInput
                     title = "Add Here ..."
-                    value={this.state.placeName}
-                    onEdit={this.onEditHandler}
+                    value={this.props.placeName}
+                    
                 />
                 <Button
                     title="Add"
                     onPress={this.onAddHandler}
                 />
             </View>
-                <PlaceList places={this.state.places} onSelectPressed={this.onSelectHandler}/>  
+                <PlaceList places={this.props.places} onSelectPressed={this.onSelectHandler}/>  
                 <PlaceDetail 
-                    selectPlace={this.state.selectPlace}
+                    selectPlace={this.props.selectPlace}
                     onDeletePlace = {this.onDeleteHandler}
                     onModalClosed = {this.onModalColsedHandler}
                     />
@@ -93,9 +52,18 @@ class placeComponent extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-    const { places, selectPlace } = state.placeRed
+const mapStateToProps = ({placeRed}) => {
+    const { places, selectPlace } = placeRed
     return { places, selectPlace }
 }
 
-export default connect(mapStateToProps, {addPlace, selectPlace, unSelectPlace, deletePlace}) (placeComponent)
+const mapDispatchToProps = dispatch => {
+    return {
+        onAddPlace: (name) => dispatch(addPlace(name)),
+        onSelectPlace: (key) => dispatch(selectPlace(key)),
+        onDeletePlace: () => dispatch(deletePlace()),
+        onUnselectPlace: () => dispatch(unSelectPlace())
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (placeComponent)
