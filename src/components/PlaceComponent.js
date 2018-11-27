@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Button, View } from 'react-native';
+import { View } from 'react-native';
 
 import {connect} from 'react-redux'
 
-import { addPlace, selectPlace, unSelectPlace, deletePlace } from '../action'
+import { addPlaceName, selectPlace, unSelectPlace, deletePlace } from '../action/index'
 
 import PlacesInput from './PlacesInput'
 import PlaceList from './PlaceList'
@@ -11,8 +11,8 @@ import PlaceDetail from './PlaceDetail'
 
 
 class placeComponent extends Component {
-   
-    onAddHandler = placeName => {
+
+    onAddHandler = (placeName) => {
         this.props.onAddPlace(placeName)  
     }
 
@@ -31,23 +31,13 @@ class placeComponent extends Component {
   render() {
     return (
       <View>
-            <View style={{flexDirection: 'row'}}>
-                <PlacesInput
-                    title = "Add Here ..."
-                    value={this.props.placeName}
-                    
-                />
-                <Button
-                    title="Add"
-                    onPress={this.onAddHandler}
-                />
-            </View>
-                <PlaceList places={this.props.places} onSelectPressed={this.onSelectHandler}/>  
-                <PlaceDetail 
-                    selectPlace={this.props.selectPlace}
-                    onDeletePlace = {this.onDeleteHandler}
-                    onModalClosed = {this.onModalColsedHandler}
-                    />
+           <PlacesInput onPlaceAdded={this.onAddHandler}/>
+            <PlaceList places={this.props.places} onSelectPressed={this.onSelectHandler}/>  
+            <PlaceDetail 
+                selectPlace={this.props.selectPlace}
+                onDeletePlace = {this.onDeleteHandler}
+                onModalClosed = {this.onModalColsedHandler}
+            />
       </View>
     );
   }
@@ -59,8 +49,8 @@ const mapStateToProps = ({placeRed}) => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onAddPlace: (name) => dispatch(addPlace(name)),
-        onSelectPlace: (key) => dispatch(selectPlace(key)),
+        onAddPlace: name => dispatch(addPlaceName(name)),
+        onSelectPlace: key => dispatch(selectPlace(key)),
         onDeletePlace: () => dispatch(deletePlace()),
         onUnselectPlace: () => dispatch(unSelectPlace())
     }

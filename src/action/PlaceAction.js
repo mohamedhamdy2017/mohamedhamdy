@@ -1,8 +1,8 @@
-import { ADD_PLACE, SELECT_PLACE, UNSELECT_PLACE, DELETE_PLACE } from './types';
+import { ADD_PLACE_NAME, SELECT_PLACE, UNSELECT_PLACE, DELETE_PLACE } from './types';
 
-export const addPlace = placeName => {
+export const addPlaceName = placeName => {
     return{
-        type: ADD_PLACE,
+        type: ADD_PLACE_NAME,
         placeName: placeName
     }
 }
