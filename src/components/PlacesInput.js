@@ -27,7 +27,7 @@ class PlacesInput extends Component {
     return (
       <View style={styles.inputContainer}>
         <TextInput
-          placeholder="An awesome place"
+          placeholder="Type Here ..."
           value={this.state.placeName}
           onChangeText={this.placeNameChangedHandler}
           style={styles.placeInput}

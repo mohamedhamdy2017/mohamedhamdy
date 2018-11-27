@@ -21,7 +21,7 @@ const PlaceDetail = props => {
                 {openModal}
             </View>
                 <View style={styles.buttonsStyle}>
-                    <Button title="Delete" onPress={props.onDeletePlace} color="red" />
+                    <Button title="Delete" onPress={props.onDeletePlaceInput} color="red" />
                     <Button title="close" onPress={props.onModalClosed}/>
                 </View>
             

@@ -32,16 +32,16 @@ export default  (state = INIT_STATE, action) => {
             return {
                 ...state,
                     selectPlace: null
-            }
+            } 
 
         case DELETE_PLACE:
             return {
                 ...state,
                     places: state.places.filter(place => {
-                        return place.key !== state.selectPlace.key
+                        return place.key !== state.selectPlace.key;
                     }),
                     selectPlace: null
-            }
+                }
 
         default: 
             return state
